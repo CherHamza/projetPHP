@@ -8,9 +8,13 @@ if (isset($_GET["page"])) {
     case 'members':
       $page = 'members.php';
       break;
+    case 'login':
+      $page ='login.php';
+      break;
     default:
       $page = 'home.php';
       break;
+
   }
 }
 require_once(dirname(__FILE__) . '/../views/' . $page);
