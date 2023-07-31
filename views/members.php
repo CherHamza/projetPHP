@@ -1,4 +1,7 @@
 <?php
+session_start();
+var_dump($_SESSION['user']);
+
 require_once(dirname(__FILE__) . "/../src/models/users.php");
 $showUsers = getUsers();
 
@@ -40,6 +43,10 @@ function getSortOrder()
 
     
     <?php
+    if(isset($_SESSION['user']) && $_SESSION['user'] === true){
+
+   
+
     $sorts = getSortOrder();
 
         echo '<table class="table">';
@@ -50,17 +57,24 @@ function getSortOrder()
         echo "\n" . ' </tr>';
     
 
-    foreach ($showUsers as $key => $user) {
-        echo "\n" . ' <tr>';
-        foreach ($user as $value) {
-          echo "\n" . '   <td>' . $value . '</td>';
-        }
-        echo "\n" . ' </tr>';
-      }
-      echo '</table>';
+   foreach ($showUsers as $user) {
+                echo '
+                <tr>   
+                    <td>' . $user['firstname'] . '</td>
+                    <td>' . $user['lastname'] . '</td>
+                    <td>' . $user['email'] . '</td>
+                </tr>
+                ';
+            }
+       
+        echo '</table>';
 
     
+      } else{
+        var_dump($_SESSION['user']);
+        echo 'vous devez être connecté';
 
+      }
     // foreach($showUsers as $showUser ){
     //     echo "<p>".ucfirst("$showUser[0]")." ".ucfirst("$showUser[1]"). "</p>";
     // }

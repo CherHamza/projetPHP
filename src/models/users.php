@@ -11,12 +11,13 @@ function getUsers()
         $users[]=[
             "firstname" => $data[0],
             "lastname"=>$data[1],
-            "Email"=>$data[2]
+            "email"=>$data[2],
+            "password"=>$data[3]
         ];
 
     }
-    // fclose($filePointer);
-return $users;
+    fclose($filePointer);
+    return $users;
 }else {
     echo "Une erreur est survenue";
 }
