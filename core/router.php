@@ -11,10 +11,15 @@ if (isset($_GET["page"])) {
     case 'login':
       $page ='login.php';
       break;
+    case 'logout':
+      $page = 'logout.php';
+      break;
+    case 'create':
+      $page = 'createUser.php';
+      break;
     default:
       $page = 'home.php';
       break;
-
   }
 }
 require_once(dirname(__FILE__) . '/../views/' . $page);

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <h1>Home</h1>
 
 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem maxime, cumque saepe itaque praesentium similique molestias eos deserunt ipsa fugit dicta tenetur atque inventore harum, quis quibusdam vel doloribus sit.
