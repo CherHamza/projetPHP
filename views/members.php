@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_SESSION['user']);
+
 
 require_once(dirname(__FILE__) . "/../src/models/users.php");
 $showUsers = getUsers();
@@ -43,7 +43,7 @@ function getSortOrder()
 
     
     <?php
-    if(isset($_SESSION['user']) && $_SESSION['user'] === true){
+    if(isset($_SESSION['user']) && $_SESSION['user']){
 
    
 
@@ -71,14 +71,17 @@ function getSortOrder()
 
     
       } else{
-        var_dump($_SESSION['user']);
-        echo 'vous devez être connecté';
+
+        echo '
+            <div class="alert alert-danger mt-5" role="alert">
+                <p class="text-center ">Vous n\'êtes pas connecté</p>
+            </div>
+            ';
 
       }
     // foreach($showUsers as $showUser ){
     //     echo "<p>".ucfirst("$showUser[0]")." ".ucfirst("$showUser[1]"). "</p>";
     // }
     ?>
-
     </div>
   </div>

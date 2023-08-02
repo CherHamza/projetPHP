@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <h1>About Us</h1>
     <div class=row>
         <div class="col">
