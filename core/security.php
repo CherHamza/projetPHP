@@ -25,7 +25,7 @@ if (isset($_POST['connexion']) && $_POST['connexion'] === 'connect') {
                 'email' =>  $_POST['email'],
             ];
 
-            header('location: http://' . $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . '/index.php?page=accueil');
+            header('location: http://' . $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . '/index.php?page=home');
         } else {
             echo '
             <div class="alert alert-danger mt-5" role="alert">

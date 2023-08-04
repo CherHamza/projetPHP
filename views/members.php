@@ -1,8 +1,9 @@
 <?php
-session_start();
+// session_start();
 
 
 require_once(dirname(__FILE__) . "/../src/models/users.php");
+// require_once(dirname(__FILE__). "/deleteUser.php");
 $showUsers = getUsers();
 
 // Fonction de comparaison pour trier par nom 
@@ -36,11 +37,39 @@ function getSortOrder()
   }
   return $sorts;
 }
+function remove_line_user(&$users, $index)
+{
+  $file_path = dirname(__FILE__) . '/../src/datas/users.csv';
+  if (file_exists($file_path)) {
+    
+    $file_pointer = fopen($file_path, 'w');
+    foreach($users as $i => $user) {
+
+        // var_dump('$i' . $i);
+       
+        // var_dump('$user' . $user['email']);
+      if($index != $user["email"]) {
+        fwrite($file_pointer, $user["firstname"].';'.$user["lastname"].';'.$user["email"].';'.$user["password"]. PHP_EOL);
+      }
+      else unset($users);
+    }
+    fclose($file_pointer);
+}
+}
+if(isset($_SESSION['user']) && $_SESSION['user'] && isset($_GET["delete"])){
+
+//var_dump($plats);
+
+remove_line_user($showUsers, $_GET["delete"]);
+header('location: http://' . $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . '/index.php?page=members');
+
+}
 ?>
+
+
 <h1>Members</h1>
   <div class="row">
     <div class="col">
-
     
     <?php
     if(isset($_SESSION['user']) && $_SESSION['user']){
@@ -63,6 +92,7 @@ function getSortOrder()
                     <td>' . $user['firstname'] . '</td>
                     <td>' . $user['lastname'] . '</td>
                     <td>' . $user['email'] . '</td>
+                    <td><a href="/index.php?page=members&delete=' . $user['email'] . ' "class="btn btn-danger"> Delete  </a></td>
                 </tr>
                 ';
             }
